@@ -41,7 +41,7 @@ function employeeData() {
             type: "input",
             name: "officeNumber",
             message: "Manager Office Number: "
-         },
+         }, 
          {
             type: "input",
             name: "github",
@@ -52,22 +52,18 @@ function employeeData() {
             name: "school",
             message: "Intern's School: "
          },
+         {
+            type: "list",
+            name: "additions",
+            message: "Do you need to add more employees to your team?",
+            choices: ["Yes", "No"]
+         },
     ])
      
 };
 
 employeeData();
 
-// function addMoreEmployees(){
-//    inquirer.prompt([
-//       {
-//          type: "list",
-//          name: "additions",
-//          message: "Do you need to add more employees to your team?",
-//          choices: ["Yes", "No"]
-//       },
-//    ])
-// };
 
 
  

@@ -37,34 +37,39 @@ function employeeData() {
             message: "Employee Role: ",
             choices: ["Manager", "Engineer", "Intern"] 
          },
-    ]);
-   //  switch (choices === "Manager") {
-   //     case 1: inquirer.prompt([
-   //        {
-   //        type: "input",
-   //        name: "officeNumber",
-   //        message: "Manager office number: ",
-   //       },
-   //     ]);
-   //  }
-}
+         {
+            type: "input",
+            name: "officeNumber",
+            message: "Manager Office Number: "
+         },
+         {
+            type: "input",
+            name: "github",
+            message: "Engineer's GitHub username: "
+         },
+         {
+            type: "input",
+            name: "school",
+            message: "Intern's School: "
+         },
+    ])
+     
+};
+
 employeeData();
 
-function addMoreEmployees(){
-   inquirer.prompt([
-      {
-         type: "list",
-         name: "additions",
-         message: "Do you need to add more employees to your team?",
-         choices: ["Yes", "No"]
-      },
-   ])
+// function addMoreEmployees(){
+//    inquirer.prompt([
+//       {
+//          type: "list",
+//          name: "additions",
+//          message: "Do you need to add more employees to your team?",
+//          choices: ["Yes", "No"]
+//       },
+//    ])
+// };
 
-};
 
-function renderToHTML(){
-
-};
  
 
 // After the user has input all employees desired, call the `render` function (required

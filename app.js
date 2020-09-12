@@ -14,59 +14,127 @@ const employees = [];
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
-function employeeData() {
-    inquirer.prompt([
-        {
-           type: "input",
-           name: "name",
-           message: "Employee Name: ", 
-        },
-        {
-            type: "input",
-            name: "email",
-            message: "Employee Email: ", 
-         },
-         {
-            type: "input",
-            name: "id",
-            message: "Employee ID: ", 
-         },
-         {
-            type: "list",
-            name: "role",
-            message: "Employee Role: ",
-            choices: ["Manager", "Engineer", "Intern"] 
-         },
-         {
-            type: "input",
-            name: "officeNumber",
-            message: "Manager Office Number: "
-         }, 
-         {
-            type: "input",
-            name: "github",
-            message: "Engineer's GitHub username: "
-         },
-         {
-            type: "input",
-            name: "school",
-            message: "Intern's School: "
-         },
-         {
-            type: "list",
-            name: "additions",
-            message: "Do you need to add more employees to your team?",
-            choices: ["Yes", "No"]
-         },
-    ])
-     
+function teamRole() {
+   inquirer.prompt([
+      {
+         type: "list",
+         name: "role",
+         message: "Employee Role: ",
+         choices: ["Manager", "Engineer", "Intern", "no more"]
+      },
+   ]).then((answers) => {
+      switch (answers.role){
+         case "Manager":
+            createManager();
+            break;
+         case "Engineer":
+            console.log("hello");
+            createEngineer();
+            break;
+         case "Intern":
+            createIntern();
+            break;
+         default: createTeam();
+      }
+   })
+   
+}
+
+function createManager(){
+   inquirer.prompt([
+   {
+      type: "input",
+      name: "managerName",
+      message: "Manager Name: ",
+   },
+   {
+      type: "input",
+      name: "managerEmail",
+      message: "Manager Email: ",
+   },
+   {
+      type: "input",
+      name: "managerId",
+      message: "Manager ID: ",
+   },
+   {
+      type: "input",
+      name: "officeNumber",
+      message: "Manager Office Number",
+   },
+   ]).then((answers) => {
+      const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers,officeNumber);
+      employees.push(manager);
+      teamRole();
+   }); 
 };
 
-employeeData();
+function createEngineer(){
+   inquirer.prompt([
+   {
+      type: "input",
+      name: "engineerName",
+      message: "Engineer Name: ",
+   },
+   {
+      type: "input",
+      name: "engineerEmail",
+      message: "Engineer Email: ",
+   },
+   {
+      type: "input",
+      name: "engineerId",
+      message: "Engineer ID: ",
+   },
+   {
+      type: "input",
+      name: "github",
+      message: "Engineer GitHub username: ",
+   },
+   ]).then((answers) => {
+      const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.github);
+      employees.push(engineer);
+      teamRole();
+   }); 
+};
 
+function createIntern(){
+   inquirer.prompt([
+   {
+      type: "input",
+      name: "internName",
+      message: "Intern Name: ",
+   },
+   {
+      type: "input",
+      name: "internEmail",
+      message: "Intern Email: ",
+   },
+   {
+      type: "input",
+      name: "internId",
+      message: "Intern ID: ",
+   },
+   {
+      type: "input",
+      name: "internSchool",
+      message: "Intern School: ",
+   },
+   ]).then((answers) => {
+      const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers,internSchool);
+      employees.push(intern);
+      teamRole();
+   }); 
+};
 
+function createTeam(){
+   if(!fs.existsSync(OUTPUT_DIR)){
+      fs.mkdirSync(OUTPUT_DIR)
+   }
+   fs.writeFileSync(outputPath, render(employees), "utf-8")
+}
 
- 
+teamRole();
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will

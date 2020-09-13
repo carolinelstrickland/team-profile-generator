@@ -63,7 +63,7 @@ function createManager(){
       message: "Manager Office Number",
    },
    ]).then((answers) => {
-      const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers,officeNumber);
+      const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.officeNumber);
       employees.push(manager);
       teamRole();
    }); 
@@ -117,11 +117,11 @@ function createIntern(){
    },
    {
       type: "input",
-      name: "internSchool",
+      name: "school",
       message: "Intern School: ",
    },
    ]).then((answers) => {
-      const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers,internSchool);
+      const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.school);
       employees.push(intern);
       teamRole();
    }); 

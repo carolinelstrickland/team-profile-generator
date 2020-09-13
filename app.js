@@ -28,7 +28,6 @@ function teamRole() {
             createManager();
             break;
          case "Engineer":
-            console.log("hello");
             createEngineer();
             break;
          case "Intern":
